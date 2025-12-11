@@ -1,0 +1,158 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        BigInt    @id @default(autoincrement())
+  tgId      BigInt    @unique
+  locale    String?   @default("ru")
+  tz        String?   @default("Europe/Moscow")
+  createdAt DateTime  @default(now())
+  folders   Folder[]
+  memories  Memory[]
+  events    Event[]
+  advice    AdviceLog[]
+  audio     AudioRecord[]
+  subscriptions Subscription[]
+  usageLogs UsageLog[]
+  chats     Chat[]
+}
+
+model Folder {
+  id        BigInt   @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    BigInt
+  name      String
+  createdAt DateTime @default(now())
+
+  memories Memory[]
+
+  @@unique([userId, name])
+}
+
+model Memory {
+  id        BigInt   @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    BigInt
+  folder    Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  folderId  BigInt
+  title     String
+  content   String
+  embedding Unsupported("vector")
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([folderId])
+  @@index([createdAt])
+  @@index([userId, folderId]) // Составной индекс для быстрого поиска по userId + folderId
+}
+
+model Event {
+  id        BigInt   @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    BigInt
+  title     String
+  description String?
+  startsAt  DateTime
+  endsAt    DateTime?
+  tz        String?  @default("Europe/Moscow")
+  createdAt DateTime @default(now())
+  reminders Reminder[]
+
+  @@index([userId])
+  @@index([startsAt])
+}
+
+model Reminder {
+  id         BigInt   @id @default(autoincrement())
+  event      Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  eventId    BigInt
+  remindAt   DateTime
+  deliveredAt DateTime?
+  status     String?  @default("scheduled")
+  createdAt  DateTime @default(now())
+
+  @@index([remindAt])
+}
+
+model AdviceLog {
+  id        BigInt   @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    BigInt
+  query     String
+  answer    String
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model AudioRecord {
+  id          BigInt   @id @default(autoincrement())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      BigInt
+  storageUrl  String
+  durationSec Int?
+  sizeBytes   BigInt?
+  transcript  String?
+  summary     String?
+  nextSteps   Json?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Subscription {
+  id        BigInt   @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    BigInt
+  status    String   @default("free")
+  plan      String?  @default("free")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model UsageLog {
+  id        BigInt   @id @default(autoincrement())
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    BigInt?
+  kind      String
+  payload   Json?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Chat {
+  id        BigInt    @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    BigInt
+  title     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  messages  Message[]
+
+  @@index([userId])
+  @@index([updatedAt])
+}
+
+model Message {
+  id        BigInt   @id @default(autoincrement())
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  chatId    BigInt
+  role      String   // "user" | "assistant"
+  text      String
+  metadata  Json?    // Дополнительные данные (например, тип ответа: memory, calendar, advice)
+  createdAt DateTime @default(now())
+
+  @@index([chatId])
+  @@index([createdAt])
+}
+

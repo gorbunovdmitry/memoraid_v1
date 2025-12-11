@@ -1,0 +1,20 @@
+{
+  "name": "memoraid",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "setup": "bash setup.sh",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend start:dev",
+    "dev:queue": "pnpm --filter backend queue:dev",
+    "build:backend": "pnpm --filter backend build",
+    "db:generate": "pnpm --filter backend prisma:generate",
+    "db:push": "pnpm --filter backend prisma:push",
+    "lint": "pnpm -r lint"
+  },
+  "devDependencies": {
+    "turbo": "^2.1.2"
+  }
+}
+

@@ -1,0 +1,25 @@
+# Dependencies
+node_modules
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Output
+dist
+.next
+.turbo
+
+# Env
+.env
+.env.local
+.env.*.local
+infra/.env.prod
+
+# IDE
+.DS_Store
+.idea
+.vscode
+
