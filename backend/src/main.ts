@@ -6,7 +6,7 @@ import { AppModule } from "./app.module";
 import { json } from "express";
 import { ValidationPipe } from "@nestjs/common";
 import { AllExceptionsFilter } from "./common/http-exception.filter";
-import * as helmet from "helmet";
+import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 
 async function bootstrap() {
