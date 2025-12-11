@@ -46,7 +46,7 @@ export class AppModule implements NestModule {
     // В production применяем middleware с проверкой авторизации
     consumer
       .apply(UserContextMiddleware)
-      .exclude("/health", "/health/(.*)")
+      .exclude("/health", "/health/(.*)", "/")
       .forRoutes("*");
   }
 }
