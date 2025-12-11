@@ -145,8 +145,8 @@ CREATE EXTENSION IF NOT EXISTS vector;
 # Database (из PostgreSQL сервиса)
 DATABASE_URL=<скопируйте из PostgreSQL сервиса>
 
-# Redis (из Redis сервиса)
-REDIS_URL=<скопируйте из Redis сервиса>
+# Redis (из Key Value сервиса)
+REDIS_URL=<скопируйте из Key Value сервиса>
 
 # Telegram
 TELEGRAM_BOT_TOKEN=ваш_токен_от_BotFather
