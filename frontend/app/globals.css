@@ -1515,16 +1515,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-top: 8px;
-  padding: 8px;
-  background: var(--bg-primary);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  gap: var(--md-space-2, 8px);
+  font-size: var(--md-title-large-size, 22px);
+  font-weight: var(--md-title-large-weight, 500);
+  font-family: var(--md-font-family);
+  line-height: var(--md-title-large-line-height, 28px);
+  color: var(--md-on-surface, #1C1B1F);
+  margin-top: var(--md-space-2, 8px);
+  padding: var(--md-space-2, 8px);
+  background: var(--md-surface, #FFFBFE);
+  border: 1px solid var(--md-outline-variant, #CAC4D0);
+  border-radius: var(--md-radius-md, 12px);
+  box-shadow: var(--md-elevation-3);
   z-index: 100;
 }
 
@@ -1532,22 +1534,23 @@ body {
 .year-select {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--md-space-1, 4px);
   cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: background 0.15s;
+  padding: var(--md-space-1, 4px) var(--md-space-2, 8px);
+  border-radius: var(--md-radius-sm, 8px);
+  transition: background-color var(--md-duration-short4, 200ms) var(--md-easing-standard);
+  min-height: 40px; /* Material Design touch target */
 }
 
 .month-select:hover,
 .year-select:hover {
-  background: var(--bg-secondary);
+  background: var(--md-surface-variant, #E7E0EC);
 }
 
 .dropdown-arrow {
   font-size: 10px;
-  color: var(--text-tertiary);
-  margin-left: 4px;
+  color: var(--md-on-surface-variant, #49454F);
+  margin-left: var(--md-space-1, 4px);
 }
 
 .month-dropdown,
@@ -1556,14 +1559,14 @@ body {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--bg-primary);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: var(--md-surface, #FFFBFE);
+  border: 1px solid var(--md-outline-variant, #CAC4D0);
+  border-radius: var(--md-radius-md, 12px);
+  box-shadow: var(--md-elevation-3);
   z-index: 1000;
   max-height: 200px;
   overflow-y: auto;
-  margin-top: 4px;
+  margin-top: var(--md-space-1, 4px);
   min-width: 120px;
 }
 
@@ -1577,45 +1580,53 @@ body {
 }
 
 .dropdown-item {
-  padding: 10px 16px;
+  padding: var(--md-space-3, 12px) var(--md-space-4, 16px);
   cursor: pointer;
-  font-size: 15px;
-  color: var(--text-primary);
-  transition: background 0.15s;
+  font-size: var(--md-body-large-size, 16px);
+  font-family: var(--md-font-family);
+  line-height: var(--md-body-large-line-height, 24px);
+  color: var(--md-on-surface, #1C1B1F);
+  transition: background-color var(--md-duration-short4, 200ms) var(--md-easing-standard);
   text-align: center;
+  min-height: 48px; /* Material Design touch target */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dropdown-item:hover {
-  background: var(--bg-secondary);
+  background: var(--md-surface-variant, #E7E0EC);
 }
 
 .dropdown-item.selected {
-  background: var(--bg-secondary);
-  font-weight: 600;
-  color: var(--text-primary);
+  background: var(--md-secondary-container, #E8DEF8);
+  font-weight: var(--md-title-medium-weight, 500);
+  color: var(--md-on-secondary-container, #1D192B);
 }
 
 .calendar-weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  margin-bottom: 8px;
-  padding: 0 4px;
+  gap: var(--md-space-1, 4px);
+  margin-bottom: var(--md-space-2, 8px);
+  padding: 0 var(--md-space-1, 4px);
 }
 
 .weekday {
   text-align: center;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  padding: 8px 4px;
+  font-size: var(--md-label-medium-size, 12px);
+  font-weight: var(--md-label-medium-weight, 500);
+  font-family: var(--md-font-family);
+  line-height: var(--md-label-medium-line-height, 16px);
+  color: var(--md-on-surface-variant, #49454F);
+  padding: var(--md-space-2, 8px) var(--md-space-1, 4px);
 }
 
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  padding: 0 4px;
+  gap: var(--md-space-1, 4px);
+  padding: 0 var(--md-space-1, 4px);
 }
 
 .calendar-day {
@@ -1623,58 +1634,63 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
-  color: var(--text-primary);
+  font-size: var(--md-body-large-size, 16px);
+  font-family: var(--md-font-family);
+  line-height: var(--md-body-large-line-height, 24px);
+  color: var(--md-on-surface, #1C1B1F);
   cursor: pointer;
-  border-radius: 8px;
-  transition: all 0.15s;
+  border-radius: var(--md-radius-full, 9999px); /* Material Design circular button */
+  transition: all var(--md-duration-short4, 200ms) var(--md-easing-standard);
   background: transparent;
   position: relative;
+  min-width: 48px; /* Material Design touch target */
+  min-height: 48px;
 }
 
 .calendar-day.other-month {
-  color: var(--text-tertiary);
-  opacity: 0.5;
+  color: var(--md-on-surface-variant, #49454F);
+  opacity: 0.38; /* Material Design disabled opacity */
   cursor: default;
 }
 
 .event-indicator {
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: var(--md-space-1, 4px);
+  right: var(--md-space-1, 4px);
   width: 6px;
   height: 6px;
-  background-color: #4CAF50;
-  border-radius: 50%;
+  background-color: var(--md-primary, #6750A4);
+  border-radius: var(--md-radius-full, 9999px);
   z-index: 1;
 }
 
 .calendar-day.other-month .event-indicator {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .calendar-day:not(.empty):hover {
-  background: var(--bg-secondary);
+  background: var(--md-surface-variant, #E7E0EC);
 }
 
 .calendar-day.selected {
-  background: #8285ff;
-  color: white;
-  font-weight: 600;
-  border-radius: 50%;
+  background: var(--md-primary, #6750A4);
+  color: var(--md-on-primary, #FFFFFF);
+  font-weight: var(--md-title-medium-weight, 500);
+  border-radius: var(--md-radius-full, 9999px);
 }
 
 .calendar-day.selected:hover {
-  background: #6b6eff;
+  background: var(--md-primary, #6750A4);
+  opacity: 0.92;
 }
 
 .calendar-day:not(.empty):not(.selected) {
-  color: var(--text-secondary);
+  color: var(--md-on-surface-variant, #49454F);
 }
 
 .calendar-day:not(.empty):not(.selected):hover {
-  background: var(--bg-secondary);
-  border-radius: 50%;
+  background: var(--md-surface-variant, #E7E0EC);
+  border-radius: var(--md-radius-full, 9999px);
 }
 
 /* Nav item active state */
