@@ -8,24 +8,37 @@ export function useTelegram() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     
+    // Функция для инициализации WebApp
+    const initWebApp = (tg: any) => {
+      if (!tg) return;
+      
+      // Вызываем ready() перед использованием
+      tg.ready();
+      tg.expand();
+      
+      // Проверяем initData
+      const hasInitData = !!tg.initData;
+      console.log("[useTelegram] WebApp initialized, initData:", hasInitData ? `present (${tg.initData.length} chars)` : "missing");
+      
+      if (!hasInitData) {
+        console.warn("[useTelegram] WARNING: initData is missing! Telegram Mini App may not be properly initialized.");
+      }
+      
+      setWebApp(tg);
+    };
+    
     // Пробуем получить WebApp из разных источников
     const tg = (window as any).Telegram?.WebApp || (window as any).tg?.WebApp;
     if (tg) {
-      tg.ready();
-      tg.expand();
-      setWebApp(tg);
-      console.log("[useTelegram] WebApp initialized, initData:", tg.initData ? "present" : "missing");
+      initWebApp(tg);
     } else {
       // Если не нашли сразу, пробуем через небольшую задержку
       const timer = setTimeout(() => {
         const retryTg = (window as any).Telegram?.WebApp || (window as any).tg?.WebApp;
         if (retryTg) {
-          retryTg.ready();
-          retryTg.expand();
-          setWebApp(retryTg);
-          console.log("[useTelegram] WebApp initialized after delay, initData:", retryTg.initData ? "present" : "missing");
+          initWebApp(retryTg);
         } else {
-          console.warn("[useTelegram] Telegram WebApp not found");
+          console.warn("[useTelegram] Telegram WebApp not found after retry");
         }
       }, 100);
       return () => clearTimeout(timer);
