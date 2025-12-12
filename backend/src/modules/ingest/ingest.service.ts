@@ -153,7 +153,7 @@ export class IngestService {
         response = await this.memoryService.create({
           userId: body.userId,
           folder,
-          title: text.slice(0, 32) || "Заметка",
+          title: "", // Не создаем заголовок, только текст
           content: text
         });
       }

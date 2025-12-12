@@ -23,7 +23,8 @@ export class MemoryService {
     const encryptedTitle = this.encryption.encrypt(body.title);
     const encryptedContent = this.encryption.encrypt(body.content);
     
-    const textToEmbed = [body.title, body.content].join("\n");
+    // Если title пустой, используем только content для embedding
+    const textToEmbed = body.title ? [body.title, body.content].join("\n") : body.content;
     this.logger.log(`[create] Creating memory in folder "${body.folder}"`); // Не логируем sensitive данные
     const embedding = await this.llm.embed(textToEmbed);
     this.logger.log(`[create] Generated embedding, length: ${embedding.length}`);
@@ -274,7 +275,8 @@ export class MemoryService {
   private async updateEmbeddingAsync(id: bigint, title: string, content: string) {
     // Выполняется асинхронно в фоне, не блокирует основной поток
     // Используем оригинальный текст для embedding (не зашифрованный)
-    const textToEmbed = [title, content].join("\n").trim();
+    // Если title пустой, используем только content для embedding
+    const textToEmbed = title ? [title, content].join("\n").trim() : content.trim();
     
     if (textToEmbed.length === 0) {
       this.logger.warn(`[updateEmbeddingAsync] Skipping embedding update: empty text for memory id=${id}`);

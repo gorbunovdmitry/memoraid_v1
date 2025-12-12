@@ -362,17 +362,12 @@ export default function SubcategoryPage() {
                     className="notes-item"
                     onClick={handleClick}
                   >
-                    <div className="notes-item-title">{memory.title}</div>
+                    {/* Показываем только текст заметки, без заголовка */}
+                    <div className="notes-item-title">
+                      {memory.snippet || memory.title || "Заметка"}
+                    </div>
                     <div className="notes-item-subtitle">
                       <span className="notes-item-date">{formatDate(memory.created_at)}</span>
-                      {memory.snippet && (
-                        <>
-                          {" · "}
-                          <span className="notes-item-preview">
-                            {memory.snippet.length > 50 ? memory.snippet.slice(0, 50) + "..." : memory.snippet}
-                          </span>
-                        </>
-                      )}
                     </div>
                   </div>
                   );

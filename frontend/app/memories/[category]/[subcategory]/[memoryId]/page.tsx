@@ -382,23 +382,7 @@ export default function MemoryPage() {
           </div>
         </div>
         
-        <div className="memory-title-section">
-          <input
-            ref={titleInputRef}
-            type="text"
-            className="memory-title-input"
-            value={editTitle}
-            onChange={(e) => {
-              setEditTitle(e.target.value);
-              scheduleAutoSave();
-            }}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            placeholder="Заголовок"
-            disabled={saving}
-          />
-        </div>
-        
+        {/* Заголовок скрыт - показываем только текст заметки */}
         <div className="memory-text-section">
           <textarea
             ref={contentInputRef}
