@@ -1,6 +1,5 @@
 import "./globals.css";
 import type { ReactNode } from "react";
-import Script from "next/script";
 
 export const metadata = {
   title: "Memoraid",
@@ -11,10 +10,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ru">
       <head>
-        {/* Telegram WebApp SDK - загружается автоматически Telegram, но добавляем для надежности */}
-        <Script
+        {/* Telegram WebApp SDK загружается автоматически Telegram при открытии Mini App */}
+        {/* Если Mini App открыт правильно через Telegram, SDK будет доступен */}
+        <script
           src="https://telegram.org/js/telegram-web-app.js"
-          strategy="beforeInteractive"
+          async
         />
       </head>
       <body className="app-body">{children}</body>
