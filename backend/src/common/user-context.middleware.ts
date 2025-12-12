@@ -53,8 +53,16 @@ export class UserContextMiddleware implements NestMiddleware {
     const initData = initDataHeader || initDataBody || "";
     const botToken = process.env.TELEGRAM_BOT_TOKEN ?? "";
 
+    // Логирование для отладки
+    console.log(`[UserContextMiddleware] initData header: ${initDataHeader ? "present" : "missing"}`);
+    console.log(`[UserContextMiddleware] initData body: ${initDataBody ? "present" : "missing"}`);
+    console.log(`[UserContextMiddleware] initData final: ${initData ? `present (${initData.length} chars)` : "missing"}`);
+    console.log(`[UserContextMiddleware] botToken: ${botToken ? "SET" : "NOT SET"}`);
+
     if (!initData || !botToken) {
-      throw new UnauthorizedException("missing initData or botToken");
+      const errorMsg = `missing initData or botToken (initData: ${initData ? "present" : "missing"}, botToken: ${botToken ? "present" : "missing"})`;
+      console.error(`[UserContextMiddleware] ${errorMsg}`);
+      throw new UnauthorizedException(errorMsg);
     }
     
     let isValid = false;

@@ -514,12 +514,24 @@ export default function HomePage() {
     // Отправка на backend
     try {
       const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001";
+      
+      // Логирование для отладки
+      console.log("[handleSendMessage] initData:", initData ? "present" : "missing");
+      console.log("[handleSendMessage] initData length:", initData?.length || 0);
+      
+      const headers: HeadersInit = {
+        "Content-Type": "application/json",
+      };
+      
+      if (initData) {
+        headers["x-telegram-init-data"] = initData;
+      } else {
+        console.warn("[handleSendMessage] WARNING: initData is missing!");
+      }
+      
       const response = await fetch(`${backendUrl}/ingest`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(initData && { "x-telegram-init-data": initData })
-        },
+        headers,
         body: JSON.stringify({ 
           text: messageText,
           ...(effectiveChatId && { chatId: effectiveChatId })
