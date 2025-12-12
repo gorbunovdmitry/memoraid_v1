@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useTelegram } from "../../../../lib/useTelegram";
 import { dataCache, cacheKeys } from "../../../../lib/dataCache";
+import { useSwipeGesture } from "../../../../lib/useSwipeGesture";
 
 type Memory = {
   id: string;
@@ -80,6 +81,13 @@ export default function SubcategoryPage() {
   const router = useRouter();
   const params = useParams();
   const { webApp, initData } = useTelegram();
+  
+  // Жестовая навигация: свайп вправо возвращает на предыдущую страницу
+  useSwipeGesture({
+    onSwipeRight: () => {
+      router.back();
+    },
+  });
   
   const categoryId = params?.category as string | undefined;
   const subcategoryName = params?.subcategory as string | undefined;

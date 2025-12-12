@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useTelegram } from "../lib/useTelegram";
 import { dataCache, cacheKeys } from "../lib/dataCache";
 import { logger } from "../lib/logger";
+import { useSwipeGesture } from "../lib/useSwipeGesture";
 
 type Message = { id: string; role: "user" | "assistant"; text: string };
 type Chat = { id: string; title: string; updatedAt: string };
@@ -28,6 +29,15 @@ export default function HomePage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
+  
+  // Жестовая навигация: свайп вправо открывает сайд-бар
+  useSwipeGesture({
+    onSwipeRight: () => {
+      if (!sidebarOpen) {
+        setSidebarOpen(true);
+      }
+    },
+  });
   const [showDebugInfo, setShowDebugInfo] = useState(false);
   const [chats, setChats] = useState<Chat[]>([]);
   const [currentChatId, setCurrentChatId] = useState<string | null>(null);

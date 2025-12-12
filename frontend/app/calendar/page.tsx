@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useTelegram } from "../../lib/useTelegram";
 import { dataCache, cacheKeys } from "../../lib/dataCache";
+import { useSwipeGesture } from "../../lib/useSwipeGesture";
 
 type Event = {
   id: string;
@@ -34,6 +35,16 @@ export default function CalendarPage() {
   const router = useRouter();
   const { webApp, initData } = useTelegram();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  
+  // Жестовая навигация: свайп вправо открывает сайд-бар
+  useSwipeGesture({
+    onSwipeRight: () => {
+      if (!sidebarOpen) {
+        setSidebarOpen(true);
+      }
+    },
+  });
+  
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [input, setInput] = useState("");

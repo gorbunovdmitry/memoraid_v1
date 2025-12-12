@@ -5,6 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import { useTelegram } from "../../../../../lib/useTelegram";
 import { dataCache, cacheKeys } from "../../../../../lib/dataCache";
 import { logger } from "../../../../../lib/logger";
+import { useSwipeGesture } from "../../../../../lib/useSwipeGesture";
 
 type Memory = {
   id: string;
@@ -22,6 +23,13 @@ export default function MemoryPage() {
   const categoryId = params?.category as string | undefined;
   const subcategoryName = params?.subcategory as string | undefined;
   const memoryId = params?.memoryId as string | undefined;
+  
+  // Жестовая навигация: свайп вправо возвращает на предыдущую страницу
+  useSwipeGesture({
+    onSwipeRight: () => {
+      router.back();
+    },
+  });
   
   // Удален лишний useEffect для логирования - не нужен в продакшене
   

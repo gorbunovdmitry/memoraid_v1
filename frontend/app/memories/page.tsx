@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useTelegram } from "../../lib/useTelegram";
+import { useSwipeGesture } from "../../lib/useSwipeGesture";
 
 type Chat = { id: string; title: string; updatedAt: string };
 
@@ -155,6 +156,16 @@ export default function MemoriesPage() {
   const router = useRouter();
   const { webApp, initData } = useTelegram();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  
+  // Жестовая навигация: свайп вправо открывает сайд-бар
+  useSwipeGesture({
+    onSwipeRight: () => {
+      if (!sidebarOpen) {
+        setSidebarOpen(true);
+      }
+    },
+  });
+  
   const [chats, setChats] = useState<Chat[]>([]);
   const [loadingChats, setLoadingChats] = useState(false);
   const chatsLoadedRef = useRef(false);
