@@ -55,10 +55,11 @@ export default function MemoryPage() {
     
     // Проверяем кэш - показываем данные сразу, если они есть
     const cachedData = dataCache.get<any>(cacheKey);
-    if (cachedData) {
-      setMemory(cachedData);
-      setEditTitle(cachedData.title || "");
-      setEditContent(cachedData.content || "");
+      if (cachedData) {
+        setMemory(cachedData);
+        // Title не используется, всегда пустой
+        setEditTitle("");
+        setEditContent(cachedData.content || "");
       setLoading(false);
       // Загружаем свежие данные в фоне
     } else {
