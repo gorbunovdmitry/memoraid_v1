@@ -531,35 +531,37 @@ body {
 
 .subcategory-card {
   aspect-ratio: 1;
-  border-radius: var(--md-radius-xl, 24px); /* Material Design card radius */
+  border-radius: var(--tg-radius-lg, 16px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--md-space-4, 16px);
+  padding: var(--tg-spacing-lg, 16px);
   cursor: pointer;
-  transition: transform var(--md-duration-medium2, 300ms) var(--md-easing-standard), 
-              box-shadow var(--md-duration-medium2, 300ms) var(--md-easing-standard);
-  box-shadow: var(--md-elevation-1);
-  background: var(--md-surface, #FFFBFE);
-  border: 1px solid var(--md-outline-variant, #CAC4D0);
+  transition: all var(--tg-transition-slow, 300ms cubic-bezier(0.4, 0, 0.2, 1));
+  box-shadow: var(--tg-elevation-1, 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24));
+  background: var(--tg-glass-bg, rgba(255, 255, 255, 0.7));
+  backdrop-filter: var(--tg-glass-blur, blur(20px));
+  -webkit-backdrop-filter: var(--tg-glass-blur, blur(20px));
+  border: 1px solid var(--tg-glass-border, rgba(255, 255, 255, 0.18));
 }
 
 .subcategory-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--md-elevation-3);
+  box-shadow: var(--tg-elevation-3, 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23));
+  background: var(--tg-glass-bg, rgba(255, 255, 255, 0.85));
 }
 
 .subcategory-card:active {
   transform: translateY(-2px);
-  box-shadow: var(--md-elevation-2);
+  box-shadow: var(--tg-elevation-2, 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23));
 }
 
 .subcategory-text {
-  font-size: var(--md-body-large-size, 16px);
-  font-weight: var(--md-body-large-weight, 400);
-  font-family: var(--md-font-family);
-  line-height: var(--md-body-large-line-height, 24px);
-  color: var(--md-on-surface, #1C1B1F);
+  font-size: var(--tg-font-size-md, 15px);
+  font-weight: var(--tg-font-weight-normal, 400);
+  font-family: var(--tg-font-family);
+  line-height: var(--tg-line-height-normal, 1.4);
+  color: var(--tg-theme-text-color, #000000);
   text-align: center;
 }
 
@@ -739,38 +741,44 @@ body {
 }
 
 .notes-item {
-  padding: var(--md-space-3, 12px) 0;
-  border-bottom: 1px solid var(--md-outline-variant, #CAC4D0);
+  padding: var(--tg-spacing-md, 12px) 0;
+  border-bottom: 1px solid var(--tg-glass-border, rgba(255, 255, 255, 0.18));
   cursor: pointer;
-  transition: background-color var(--md-duration-short4, 200ms) var(--md-easing-standard);
-  min-height: 72px; /* Material Design list item height */
+  transition: all var(--tg-transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
+  min-height: 64px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: var(--tg-radius-sm, 8px);
+  margin: var(--tg-spacing-xs, 4px) 0;
+  padding-left: var(--tg-spacing-md, 12px);
+  padding-right: var(--tg-spacing-md, 12px);
 }
 
 .notes-item:hover {
-  background: var(--md-surface-variant, #E7E0EC);
+  background: var(--tg-glass-bg, rgba(255, 255, 255, 0.5));
+  backdrop-filter: var(--tg-glass-blur, blur(10px));
+  -webkit-backdrop-filter: var(--tg-glass-blur, blur(10px));
 }
 
 .notes-item:active {
-  background: var(--md-surface-variant, #E7E0EC);
+  transform: scale(0.98);
 }
 
 .notes-item-title {
-  font-size: var(--md-body-large-size, 16px);
-  font-weight: var(--md-body-large-weight, 400);
-  font-family: var(--md-font-family);
-  line-height: var(--md-body-large-line-height, 24px);
-  color: var(--md-on-surface, #1C1B1F);
-  margin-bottom: var(--md-space-1, 4px);
+  font-size: var(--tg-font-size-md, 15px);
+  font-weight: var(--tg-font-weight-normal, 400);
+  font-family: var(--tg-font-family);
+  line-height: var(--tg-line-height-normal, 1.4);
+  color: var(--tg-theme-text-color, #000000);
+  margin-bottom: var(--tg-spacing-xs, 4px);
 }
 
 .notes-item-subtitle {
-  font-size: var(--md-body-medium-size, 14px);
-  font-family: var(--md-font-family);
-  line-height: var(--md-body-medium-line-height, 20px);
-  color: var(--md-on-surface-variant, #49454F);
+  font-size: var(--tg-font-size-sm, 14px);
+  font-family: var(--tg-font-family);
+  line-height: var(--tg-line-height-normal, 1.4);
+  color: var(--tg-theme-hint-color, #999999);
 }
 
 .notes-item-date {
@@ -1139,7 +1147,7 @@ body {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  background: var(--md-background, #FFFBFE);
+  background: var(--tg-theme-bg-color, #ffffff);
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -1150,21 +1158,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--md-space-6, 24px);
+  padding: var(--tg-spacing-2xl, 24px);
 }
 
 .empty-message {
-  color: var(--md-on-surface-variant, #49454F);
-  font-size: var(--md-body-large-size, 16px);
-  font-family: var(--md-font-family);
-  line-height: var(--md-body-large-line-height, 24px);
+  color: var(--tg-theme-hint-color, #999999);
+  font-size: var(--tg-font-size-md, 15px);
+  font-family: var(--tg-font-family);
+  line-height: var(--tg-line-height-normal, 1.4);
 }
 
 .messages {
-  padding: var(--md-space-4, 16px);
+  padding: var(--tg-spacing-lg, 16px);
   display: flex;
   flex-direction: column;
-  gap: var(--md-space-4, 16px);
+  gap: var(--tg-spacing-lg, 16px);
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
