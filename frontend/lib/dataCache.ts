@@ -108,7 +108,7 @@ function getDataCache(): DataCache {
       invalidate: () => {},
       invalidatePattern: () => {},
       clear: () => {}
-    } as DataCache;
+    } as unknown as DataCache;
   }
   
   if (!cacheInstance) {
