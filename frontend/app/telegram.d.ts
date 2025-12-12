@@ -9,6 +9,7 @@ declare global {
         expand: () => void;
         ready: () => void;
         showPopup?: (params: { title: string; message: string }) => void;
+        showAlert?: (message: string) => void;
         hapticFeedback?: {
           impactOccurred: (style: "light" | "medium" | "heavy") => void;
         };
