@@ -264,15 +264,15 @@ body {
 }
 
 .section-title {
-  font-size: var(--md-label-small-size, 11px);
-  font-weight: var(--md-label-small-weight, 500);
-  font-family: var(--md-font-family);
-  color: var(--md-on-surface-variant, #49454F);
+  font-size: var(--tg-font-size-xs, 12px);
+  font-weight: var(--tg-font-weight-medium, 500);
+  font-family: var(--tg-font-family);
+  color: var(--tg-theme-hint-color);
   text-transform: uppercase;
-  letter-spacing: var(--md-label-small-letter-spacing, 0.5px);
-  padding: var(--md-space-2, 8px) var(--md-space-3, 12px);
-  margin-bottom: var(--md-space-1, 4px);
-  line-height: var(--md-label-small-line-height, 16px);
+  letter-spacing: 0.5px;
+  padding: var(--tg-spacing-sm, 8px) var(--tg-spacing-md, 12px);
+  margin-bottom: var(--tg-spacing-xs, 4px);
+  line-height: var(--tg-line-height-normal, 1.4);
 }
 
 .chat-list {
@@ -282,31 +282,31 @@ body {
 }
 
 .chat-item {
-  padding: var(--md-space-3, 12px) var(--md-space-4, 16px);
-  border-radius: var(--md-radius-lg, 16px);
-  font-size: var(--md-body-large-size, 16px);
-  font-family: var(--md-font-family);
-  font-weight: var(--md-body-large-weight, 400);
-  line-height: var(--md-body-large-line-height, 24px);
-  color: var(--md-on-surface, #1C1B1F);
+  padding: var(--tg-spacing-md, 12px) var(--tg-spacing-lg, 16px);
+  border-radius: var(--tg-radius-lg, 16px);
+  font-size: var(--tg-font-size-md, 15px);
+  font-family: var(--tg-font-family);
+  font-weight: var(--tg-font-weight-normal, 400);
+  line-height: var(--tg-line-height-normal, 1.4);
+  color: var(--tg-theme-text-color);
   cursor: pointer;
-  transition: background-color var(--md-duration-short4, 200ms) var(--md-easing-standard);
+  transition: background-color var(--tg-transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-height: 48px; /* Material Design touch target */
+  min-height: 44px;
   display: flex;
   align-items: center;
 }
 
 .chat-item:hover {
-  background: var(--md-surface-variant, #E7E0EC);
+  background: var(--tg-theme-secondary-bg-color);
 }
 
 .chat-item.active {
-  background: var(--md-secondary-container, #E8DEF8);
-  color: var(--md-on-secondary-container, #1D192B);
-  font-weight: var(--md-title-medium-weight, 500);
+  background: var(--tg-theme-secondary-bg-color);
+  color: var(--tg-theme-text-color);
+  font-weight: var(--tg-font-weight-medium, 500);
 }
 
 .sidebar-footer {
