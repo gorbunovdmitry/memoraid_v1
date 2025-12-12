@@ -53,6 +53,22 @@ export function useTelegram() {
     const initWebApp = (tg: any) => {
       if (!tg) return;
       
+      // Принудительно устанавливаем светлую тему
+      try {
+        if (tg.setHeaderColor) {
+          tg.setHeaderColor('#ffffff');
+        }
+        if (tg.setBackgroundColor) {
+          tg.setBackgroundColor('#ffffff');
+        }
+        // Отключаем темную тему через colorScheme
+        if (typeof tg.colorScheme !== 'undefined') {
+          (tg as any).colorScheme = 'light';
+        }
+      } catch (e) {
+        console.warn("[useTelegram] Could not set theme colors:", e);
+      }
+      
       // Вызываем ready() перед использованием
       tg.ready();
       tg.expand();
