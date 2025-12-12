@@ -1,17 +1,17 @@
-/* Legacy variables - будут заменены Material Design переменными */
+/* Legacy variables - теперь используют Telegram Design System */
 :root {
-  /* Используем Material Design цвета */
-  --bg-primary: var(--md-surface, #FFFBFE);
-  --bg-secondary: var(--md-surface-variant, #E7E0EC);
-  --bg-tertiary: var(--md-surface-variant, #E7E0EC);
-  --text-primary: var(--md-on-surface, #1C1B1F);
-  --text-secondary: var(--md-on-surface-variant, #49454F);
-  --text-tertiary: var(--md-on-surface-variant, #49454F);
-  --border: var(--md-outline-variant, #CAC4D0);
-  --accent-blue: var(--md-primary, #6750A4);
-  --accent-red: var(--md-error, #BA1A1A);
-  --accent-orange: var(--md-tertiary, #7D5260);
-  --accent-green: var(--md-secondary, #625B71);
+  /* Используем Telegram цвета */
+  --bg-primary: var(--tg-theme-bg-color, #ffffff);
+  --bg-secondary: var(--tg-theme-secondary-bg-color, #f1f1f1);
+  --bg-tertiary: var(--tg-glass-bg, rgba(255, 255, 255, 0.7));
+  --text-primary: var(--tg-theme-text-color, #000000);
+  --text-secondary: var(--tg-theme-hint-color, #999999);
+  --text-tertiary: var(--tg-theme-hint-color, #999999);
+  --border: var(--tg-glass-border, rgba(255, 255, 255, 0.18));
+  --accent-blue: var(--tg-theme-button-color, #2481cc);
+  --accent-red: #ff3b30;
+  --accent-orange: #ff9500;
+  --accent-green: #34c759;
 }
 
 * {
@@ -23,11 +23,11 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: var(--md-font-family, 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif);
+  font-family: var(--tg-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--md-background, #FFFBFE);
-  color: var(--md-on-background, #1C1B1F);
+  background-color: var(--tg-theme-bg-color, #ffffff);
+  color: var(--tg-theme-text-color, #000000);
 }
 
 .app-body {
@@ -41,11 +41,13 @@ body {
   background: var(--bg-primary);
 }
 
-/* Sidebar - Material Design */
+/* Sidebar - Telegram Design with Liquid Glass */
 .sidebar {
-  width: 280px; /* Material Design sidebar width */
-  background: var(--md-surface, #FFFBFE);
-  border-right: 1px solid var(--md-outline-variant, #CAC4D0);
+  width: 280px;
+  background: var(--tg-glass-bg, rgba(255, 255, 255, 0.85));
+  backdrop-filter: var(--tg-glass-blur, blur(20px));
+  -webkit-backdrop-filter: var(--tg-glass-blur, blur(20px));
+  border-right: 1px solid var(--tg-glass-border, rgba(255, 255, 255, 0.18));
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -54,13 +56,13 @@ body {
   height: 100vh;
   z-index: 100;
   transform: translateX(-100%);
-  transition: transform var(--md-duration-medium4, 400ms) var(--md-easing-standard, cubic-bezier(0.2, 0, 0, 1));
-  box-shadow: var(--md-elevation-1);
+  transition: transform var(--tg-transition-slow, 300ms cubic-bezier(0.4, 0, 0.2, 1));
+  box-shadow: var(--tg-elevation-2, 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23));
 }
 
 .sidebar.open {
   transform: translateX(0);
-  box-shadow: var(--md-elevation-3);
+  box-shadow: var(--tg-elevation-4, 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22));
 }
 
 .sidebar-content {
@@ -74,23 +76,23 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--md-space-4, 16px);
-  min-height: 64px; /* Material Design app bar height */
-  border-bottom: 1px solid var(--md-outline-variant, #CAC4D0);
+  padding: var(--tg-spacing-lg, 16px);
+  min-height: 56px;
+  border-bottom: 1px solid var(--tg-glass-border, rgba(255, 255, 255, 0.18));
 }
 
 .logo {
-  width: 40px; /* Material Design icon size */
+  width: 40px;
   height: 40px;
-  border-radius: var(--md-radius-md, 12px);
-  background: var(--md-primary, #6750A4);
-  color: var(--md-on-primary, #FFFFFF);
+  border-radius: var(--tg-radius-md, 12px);
+  background: var(--tg-theme-button-color, #2481cc);
+  color: var(--tg-theme-button-text-color, #ffffff);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
-  font-size: var(--md-title-medium-size, 16px);
-  font-family: var(--md-font-family);
+  font-weight: var(--tg-font-weight-semibold, 600);
+  font-size: var(--tg-font-size-lg, 17px);
+  font-family: var(--tg-font-family);
 }
 
 .close-btn {
@@ -98,23 +100,24 @@ body {
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: var(--md-on-surface-variant, #49454F);
-  padding: var(--md-space-2, 8px);
-  width: 40px; /* Material Design touch target */
+  color: var(--tg-theme-hint-color, #999999);
+  padding: var(--tg-spacing-sm, 8px);
+  width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--md-radius-full, 9999px);
-  transition: background-color var(--md-duration-short4, 200ms) var(--md-easing-standard);
+  border-radius: var(--tg-radius-full, 9999px);
+  transition: all var(--tg-transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
 }
 
 .close-btn:hover {
-  background-color: var(--md-surface-variant, #E7E0EC);
+  background-color: var(--tg-theme-secondary-bg-color, rgba(0, 0, 0, 0.05));
+  color: var(--tg-theme-text-color, #000000);
 }
 
 .close-btn:active {
-  background-color: var(--md-surface-variant, #E7E0EC);
+  transform: scale(0.95);
 }
 
 .sidebar-search-section {
@@ -136,23 +139,26 @@ body {
   position: relative;
   display: flex;
   align-items: center;
-  background: var(--md-surface-variant, #E7E0EC);
-  border-radius: var(--md-radius-full, 9999px); /* Material Design filled text field */
-  padding: var(--md-space-2, 8px) var(--md-space-3, 12px);
-  box-shadow: var(--md-elevation-0);
-  transition: background-color var(--md-duration-short4, 200ms) var(--md-easing-standard);
+  background: var(--tg-glass-bg, rgba(255, 255, 255, 0.7));
+  backdrop-filter: var(--tg-glass-blur, blur(20px));
+  -webkit-backdrop-filter: var(--tg-glass-blur, blur(20px));
+  border-radius: var(--tg-radius-xl, 20px);
+  border: 1px solid var(--tg-glass-border, rgba(255, 255, 255, 0.18));
+  padding: var(--tg-spacing-sm, 8px) var(--tg-spacing-md, 12px);
+  box-shadow: var(--tg-elevation-1, 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24));
+  transition: all var(--tg-transition-normal, 200ms cubic-bezier(0.4, 0, 0.2, 1));
 }
 
 .search-container:focus-within {
-  background: var(--md-surface, #FFFBFE);
-  box-shadow: var(--md-elevation-1);
+  background: var(--tg-glass-bg, rgba(255, 255, 255, 0.85));
+  box-shadow: var(--tg-elevation-2, 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23));
 }
 
 .search-icon {
   width: 20px;
   height: 20px;
-  color: var(--md-on-surface-variant, #49454F);
-  margin-right: var(--md-space-2, 8px);
+  color: var(--tg-theme-hint-color, #999999);
+  margin-right: var(--tg-spacing-sm, 8px);
   flex-shrink: 0;
 }
 
@@ -161,44 +167,44 @@ body {
   border: none;
   background: transparent;
   outline: none;
-  font-size: var(--md-body-large-size, 16px);
-  font-family: var(--md-font-family);
-  color: var(--md-on-surface, #1C1B1F);
+  font-size: var(--tg-font-size-md, 15px);
+  font-family: var(--tg-font-family);
+  color: var(--tg-theme-text-color, #000000);
   padding: 0;
-  line-height: var(--md-body-large-line-height, 24px);
+  line-height: var(--tg-line-height-normal, 1.4);
 }
 
 .search-input::placeholder {
-  color: var(--md-on-surface-variant, #49454F);
+  color: var(--tg-theme-hint-color, #999999);
 }
 
 .new-chat-icon-btn {
-  width: 48px; /* Material Design touch target */
-  height: 48px;
-  border-radius: var(--md-radius-full, 9999px);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--tg-radius-full, 9999px);
   border: none;
   background: transparent;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--md-primary, #6750A4);
-  transition: background-color var(--md-duration-short4, 200ms) var(--md-easing-standard);
+  color: var(--tg-theme-button-color, #2481cc);
+  transition: all var(--tg-transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
 }
 
 .new-chat-icon-btn:hover {
-  background: var(--md-surface-variant, #E7E0EC);
+  background: var(--tg-theme-secondary-bg-color, rgba(0, 0, 0, 0.05));
 }
 
 .new-chat-icon-btn:active {
-  background: var(--md-primary-container, #EADDFF);
+  transform: scale(0.95);
 }
 
 .new-chat-icon-btn svg {
-  stroke: var(--md-primary, #6750A4);
+  stroke: var(--tg-theme-button-color, #2481cc);
   width: 24px;
   height: 24px;
 }
@@ -213,30 +219,30 @@ body {
 .nav-item {
   display: flex;
   align-items: center;
-  gap: var(--md-space-3, 12px);
-  padding: var(--md-space-3, 12px) var(--md-space-4, 16px);
+  gap: var(--tg-spacing-md, 12px);
+  padding: var(--tg-spacing-md, 12px) var(--tg-spacing-lg, 16px);
   border: none;
   background: none;
   text-align: left;
   cursor: pointer;
-  border-radius: var(--md-radius-lg, 16px);
-  color: var(--md-on-surface, #1C1B1F);
-  font-size: var(--md-body-large-size, 16px);
-  font-family: var(--md-font-family);
-  font-weight: var(--md-body-large-weight, 400);
-  line-height: var(--md-body-large-line-height, 24px);
-  min-height: 48px; /* Material Design touch target */
-  transition: background-color var(--md-duration-short4, 200ms) var(--md-easing-standard);
+  border-radius: var(--tg-radius-lg, 16px);
+  color: var(--tg-theme-text-color, #000000);
+  font-size: var(--tg-font-size-md, 15px);
+  font-family: var(--tg-font-family);
+  font-weight: var(--tg-font-weight-normal, 400);
+  line-height: var(--tg-line-height-normal, 1.4);
+  min-height: 44px;
+  transition: all var(--tg-transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
   position: relative;
   overflow: hidden;
 }
 
 .nav-item:hover {
-  background: var(--md-surface-variant, #E7E0EC);
+  background: var(--tg-theme-secondary-bg-color, rgba(0, 0, 0, 0.05));
 }
 
 .nav-item:active {
-  background: var(--md-surface-variant, #E7E0EC);
+  transform: scale(0.98);
 }
 
 .nav-icon {
@@ -1188,11 +1194,11 @@ body {
 }
 
 .message-content {
-  padding: var(--md-space-3, 12px) var(--md-space-4, 16px);
-  border-radius: var(--md-radius-lg, 16px);
-  font-size: var(--md-body-large-size, 16px);
-  font-family: var(--md-font-family);
-  line-height: var(--md-body-large-line-height, 24px);
+  padding: var(--tg-spacing-md, 12px) var(--tg-spacing-lg, 16px);
+  border-radius: var(--tg-radius-lg, 16px);
+  font-size: var(--tg-font-size-md, 15px);
+  font-family: var(--tg-font-family);
+  line-height: var(--tg-line-height-relaxed, 1.6);
   word-wrap: break-word !important;
   overflow-wrap: break-word !important;
   word-break: break-word !important;
@@ -1205,17 +1211,22 @@ body {
   max-height: none !important;
   min-height: auto !important;
   width: 100% !important;
-  box-shadow: var(--md-elevation-1);
+  box-shadow: var(--tg-elevation-1, 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24));
 }
 
 .message.user .message-content {
-  background: var(--md-primary-container, #EADDFF);
-  color: var(--md-on-primary-container, #21005D);
+  background: var(--tg-theme-button-color, #2481cc);
+  color: var(--tg-theme-button-text-color, #ffffff);
+  backdrop-filter: var(--tg-glass-blur, blur(10px));
+  -webkit-backdrop-filter: var(--tg-glass-blur, blur(10px));
 }
 
 .message.assistant .message-content {
-  background: var(--md-surface-variant, #E7E0EC);
-  color: var(--md-on-surface-variant, #49454F);
+  background: var(--tg-glass-bg, rgba(255, 255, 255, 0.7));
+  backdrop-filter: var(--tg-glass-blur, blur(20px));
+  -webkit-backdrop-filter: var(--tg-glass-blur, blur(20px));
+  border: 1px solid var(--tg-glass-border, rgba(255, 255, 255, 0.18));
+  color: var(--tg-theme-text-color, #000000);
 }
 
 /* Loading Indicator */
@@ -1250,51 +1261,61 @@ body {
   }
 }
 
-/* Input Area - Material Design */
+/* Input Area - Telegram Design with Liquid Glass */
 .input-area {
-  padding: var(--md-space-2, 8px) var(--md-space-3, 12px);
-  border-top: 1px solid var(--md-outline-variant, #CAC4D0);
-  background: var(--md-surface, #FFFBFE);
-  box-shadow: var(--md-elevation-2);
+  padding: var(--tg-spacing-md, 12px) var(--tg-spacing-lg, 16px);
+  border-top: 1px solid var(--tg-glass-border, rgba(255, 255, 255, 0.18));
+  background: var(--tg-glass-bg, rgba(255, 255, 255, 0.8));
+  backdrop-filter: var(--tg-glass-blur, blur(20px));
+  -webkit-backdrop-filter: var(--tg-glass-blur, blur(20px));
+  box-shadow: var(--tg-elevation-2, 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23));
 }
 
 .input-container {
   display: flex;
-  align-items: flex-end;
-  gap: var(--md-space-2, 8px);
-  background: var(--md-surface-variant, #E7E0EC);
-  border-radius: var(--md-radius-full, 9999px); /* Material Design filled text field */
-  border: none;
-  padding: var(--md-space-1, 4px) var(--md-space-1, 4px) var(--md-space-1, 4px) var(--md-space-3, 12px);
+  align-items: center; /* Исправлено: было flex-end, теперь center для правильного выравнивания */
+  gap: var(--tg-spacing-sm, 8px);
+  background: var(--tg-glass-bg, rgba(255, 255, 255, 0.7));
+  backdrop-filter: var(--tg-glass-blur, blur(20px));
+  -webkit-backdrop-filter: var(--tg-glass-blur, blur(20px));
+  border-radius: var(--tg-radius-xl, 20px);
+  border: 1px solid var(--tg-glass-border, rgba(255, 255, 255, 0.18));
+  padding: var(--tg-spacing-sm, 8px) var(--tg-spacing-md, 12px);
   max-width: 100%;
-  transition: background-color var(--md-duration-short4, 200ms) var(--md-easing-standard);
-  box-shadow: var(--md-elevation-0);
+  transition: all var(--tg-transition-normal, 200ms cubic-bezier(0.4, 0, 0.2, 1));
+  box-shadow: var(--tg-elevation-1, 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24));
 }
 
 .input-container:focus-within {
-  background: var(--md-surface, #FFFBFE);
-  box-shadow: var(--md-elevation-1);
+  background: var(--tg-glass-bg, rgba(255, 255, 255, 0.85));
+  box-shadow: var(--tg-elevation-2, 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23));
 }
 
 .attach-btn {
-  width: 32px;
-  height: 32px;
+  width: 40px; /* Единый размер для всех кнопок */
+  height: 40px;
+  min-width: 40px; /* Фиксированная минимальная ширина */
+  min-height: 40px; /* Фиксированная минимальная высота */
   border: none;
-  background: none;
-  color: var(--text-tertiary);
+  background: transparent;
+  color: var(--tg-theme-hint-color, #999999);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border-radius: 50%;
-  transition: all 0.15s;
+  border-radius: var(--tg-radius-full, 9999px);
+  transition: all var(--tg-transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
   padding: 0;
 }
 
 .attach-btn:hover {
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
+  background: var(--tg-theme-secondary-bg-color, rgba(0, 0, 0, 0.05));
+  color: var(--tg-theme-text-color, #000000);
+}
+
+.attach-btn:active {
+  transform: scale(0.95);
 }
 
 .attach-btn svg {
@@ -1306,12 +1327,12 @@ body {
   flex: 1;
   border: none;
   background: transparent;
-  font-size: var(--md-body-large-size, 16px);
-  font-family: var(--md-font-family);
-  line-height: var(--md-body-large-line-height, 24px);
-  color: var(--md-on-surface, #1C1B1F);
+  font-size: var(--tg-font-size-md, 15px);
+  font-family: var(--tg-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+  line-height: var(--tg-line-height-normal, 1.4);
+  color: var(--tg-theme-text-color, #000000);
   outline: none;
-  padding: var(--md-space-2, 8px) var(--md-space-1, 4px);
+  padding: var(--tg-spacing-sm, 8px) var(--tg-spacing-sm, 8px);
   min-width: 0;
   resize: none;
   overflow-y: auto;
@@ -1322,88 +1343,94 @@ body {
 }
 
 .message-input::placeholder {
-  color: var(--md-on-surface-variant, #49454F);
+  color: var(--tg-theme-hint-color, #999999);
 }
 
 .input-actions {
   display: flex;
-  align-items: center;
-  gap: 4px;
-  min-width: 64px;
+  align-items: center; /* Исправлено: выравнивание по центру */
+  gap: var(--tg-spacing-xs, 4px);
+  min-width: auto; /* Убрано фиксированное min-width */
   justify-content: flex-end;
+  flex-shrink: 0;
 }
 
 .emoji-btn,
 .mic-btn {
-  width: 48px; /* Material Design touch target */
-  height: 48px;
+  width: 40px; /* Единый размер для всех кнопок */
+  height: 40px;
+  min-width: 40px; /* Фиксированная минимальная ширина */
+  min-height: 40px; /* Фиксированная минимальная высота */
   border: none;
-  background: none;
-  color: var(--md-on-surface-variant, #49454F);
+  background: transparent;
+  color: var(--tg-theme-hint-color, #999999);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border-radius: var(--md-radius-full, 9999px);
-  transition: background-color var(--md-duration-short4, 200ms) var(--md-easing-standard);
+  border-radius: var(--tg-radius-full, 9999px);
+  transition: all var(--tg-transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
   padding: 0;
 }
 
 .emoji-btn:hover,
 .mic-btn:hover {
-  background: var(--md-surface-variant, #E7E0EC);
-  color: var(--md-on-surface, #1C1B1F);
+  background: var(--tg-theme-secondary-bg-color, rgba(0, 0, 0, 0.05));
+  color: var(--tg-theme-text-color, #000000);
 }
 
 .emoji-btn:active,
 .mic-btn:active {
-  background: var(--md-surface-variant, #E7E0EC);
+  transform: scale(0.95);
 }
 
 .emoji-btn svg,
 .mic-btn svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .send-btn {
-  width: 48px; /* Material Design touch target */
-  height: 48px;
+  width: 40px; /* Единый размер для всех кнопок */
+  height: 40px;
+  min-width: 40px; /* Фиксированная минимальная ширина */
+  min-height: 40px; /* Фиксированная минимальная высота */
   border: none;
-  background: var(--md-primary, #6750A4);
-  color: var(--md-on-primary, #FFFFFF);
+  background: var(--tg-theme-button-color, #2481cc);
+  color: var(--tg-theme-button-text-color, #ffffff);
   cursor: pointer;
   display: flex !important;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border-radius: var(--md-radius-full, 9999px);
-  transition: all var(--md-duration-short4, 200ms) var(--md-easing-standard);
+  border-radius: var(--tg-radius-full, 9999px);
+  transition: all var(--tg-transition-normal, 200ms cubic-bezier(0.4, 0, 0.2, 1));
   padding: 0;
   opacity: 1;
   visibility: visible;
   position: relative;
   pointer-events: auto;
-  box-shadow: var(--md-elevation-1);
+  box-shadow: var(--tg-elevation-1, 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24));
 }
 
 .send-btn:hover:not(:disabled) {
-  background: var(--md-primary, #6750A4);
-  opacity: 0.92;
-  box-shadow: var(--md-elevation-2);
+  background: var(--tg-theme-button-color, #2481cc);
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: var(--tg-elevation-2, 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23));
 }
 
 .send-btn:active:not(:disabled) {
-  transform: scale(0.96);
-  box-shadow: var(--md-elevation-1);
+  transform: translateY(0) scale(0.95);
+  box-shadow: var(--tg-elevation-1, 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24));
 }
 
 .send-btn:disabled {
-  opacity: 0.38; /* Material Design disabled opacity */
+  opacity: 0.4;
   cursor: not-allowed;
   pointer-events: none;
-  background: var(--md-on-surface, #1C1B1F);
+  background: var(--tg-theme-secondary-bg-color, rgba(0, 0, 0, 0.1));
 }
 
 .send-btn.active {
@@ -1413,8 +1440,8 @@ body {
 }
 
 .send-btn svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   display: block;
 }
 

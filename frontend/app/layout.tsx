@@ -1,5 +1,5 @@
 import "./globals.css";
-import "./material-design.css";
+import "./telegram-design.css";
 import type { ReactNode } from "react";
 
 export const metadata = {
