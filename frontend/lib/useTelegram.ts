@@ -90,25 +90,50 @@ export function useTelegram() {
       }
     };
     
-    // Пробуем получить WebApp из разных источников
-    const tg = (window as any).Telegram?.WebApp || (window as any).tg?.WebApp;
-    if (tg) {
-      initWebApp(tg);
-    } else {
-      // Если не нашли сразу, пробуем через небольшую задержку
-      const timer = setTimeout(() => {
-        const retryTg = (window as any).Telegram?.WebApp || (window as any).tg?.WebApp;
-        if (retryTg) {
-          initWebApp(retryTg);
-        } else {
-          console.error("[useTelegram] Telegram WebApp not found after retry");
-          console.error("[useTelegram] window.Telegram:", (window as any).Telegram ? "exists" : "missing");
-          console.error("[useTelegram] window.tg:", (window as any).tg ? "exists" : "missing");
-          console.error("[useTelegram] window keys:", Object.keys(window).filter(k => k.toLowerCase().includes('telegram')));
-        }
-      }, 100);
-      return () => clearTimeout(timer);
+    // Функция для проверки и инициализации WebApp
+    const checkAndInit = () => {
+      const tg = (window as any).Telegram?.WebApp || (window as any).tg?.WebApp;
+      if (tg) {
+        initWebApp(tg);
+        return true;
+      }
+      return false;
+    };
+    
+    // Пробуем получить WebApp сразу
+    if (checkAndInit()) {
+      return;
     }
+    
+    // Если не нашли сразу, пробуем несколько раз с увеличивающейся задержкой
+    let attempts = 0;
+    const maxAttempts = 10;
+    const delays = [100, 200, 300, 500, 1000, 2000];
+    
+    const tryInit = () => {
+      attempts++;
+      if (checkAndInit()) {
+        return;
+      }
+      
+      if (attempts < maxAttempts) {
+        const delay = delays[attempts - 1] || 2000;
+        setTimeout(tryInit, delay);
+      } else {
+        console.error("[useTelegram] Telegram WebApp not found after all retries");
+        console.error("[useTelegram] window.Telegram:", (window as any).Telegram ? "exists" : "missing");
+        console.error("[useTelegram] window.tg:", (window as any).tg ? "exists" : "missing");
+        console.error("[useTelegram] window keys:", Object.keys(window).filter(k => k.toLowerCase().includes('telegram')));
+        console.error("[useTelegram] This usually means:");
+        console.error("  1. Mini App is not opened through Telegram");
+        console.error("  2. Telegram WebApp SDK script is not loaded");
+        console.error("  3. Mini App URL is not correctly configured in BotFather");
+      }
+    };
+    
+    // Начинаем попытки
+    const timer = setTimeout(tryInit, 100);
+    return () => clearTimeout(timer);
   }, [initDataState]);
 
   return useMemo(() => {
