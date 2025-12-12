@@ -16,12 +16,19 @@ export function useTelegram() {
       tg.ready();
       tg.expand();
       
-      // Проверяем initData
-      const hasInitData = !!tg.initData;
-      console.log("[useTelegram] WebApp initialized, initData:", hasInitData ? `present (${tg.initData.length} chars)` : "missing");
+      // Проверяем initData из разных источников
+      const initData = tg.initData || tg.initDataUnsafe?.query_id || null;
+      const hasInitData = !!initData;
+      
+      console.log("[useTelegram] WebApp initialized");
+      console.log("[useTelegram] tg.initData:", tg.initData ? `present (${tg.initData.length} chars)` : "missing");
+      console.log("[useTelegram] tg.initDataUnsafe:", tg.initDataUnsafe ? "present" : "missing");
+      console.log("[useTelegram] Final initData:", hasInitData ? `present (${initData.length} chars)` : "missing");
       
       if (!hasInitData) {
-        console.warn("[useTelegram] WARNING: initData is missing! Telegram Mini App may not be properly initialized.");
+        console.warn("[useTelegram] WARNING: initData is missing!");
+        console.warn("[useTelegram] Make sure Mini App is opened through Telegram (not in browser)");
+        console.warn("[useTelegram] Check that Mini App URL is correctly configured in BotFather");
       }
       
       setWebApp(tg);
@@ -39,19 +46,30 @@ export function useTelegram() {
           initWebApp(retryTg);
         } else {
           console.warn("[useTelegram] Telegram WebApp not found after retry");
+          console.warn("[useTelegram] window.Telegram:", (window as any).Telegram ? "exists" : "missing");
+          console.warn("[useTelegram] window.tg:", (window as any).tg ? "exists" : "missing");
         }
       }, 100);
       return () => clearTimeout(timer);
     }
   }, []);
 
-  return useMemo(
-    () => ({
+  return useMemo(() => {
+    // Пробуем получить initData из разных источников
+    const initData = webApp?.initData || null;
+    
+    // Логируем для отладки
+    if (webApp && !initData) {
+      console.warn("[useTelegram] initData is null in return value");
+      console.warn("[useTelegram] webApp.initData:", webApp.initData);
+      console.warn("[useTelegram] webApp.initDataUnsafe:", webApp.initDataUnsafe);
+    }
+    
+    return {
       webApp,
-      initData: webApp?.initData,
+      initData,
       initDataUnsafe: webApp?.initDataUnsafe
-    }),
-    [webApp]
-  );
+    };
+  }, [webApp]);
 }
 

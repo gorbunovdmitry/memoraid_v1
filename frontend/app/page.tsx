@@ -519,8 +519,17 @@ export default function HomePage() {
       // Логирование для отладки
       console.log("[handleSendMessage] Backend URL:", backendUrl);
       console.log("[handleSendMessage] Request URL:", requestUrl);
-      console.log("[handleSendMessage] initData:", initData ? "present" : "missing");
-      console.log("[handleSendMessage] initData length:", initData?.length || 0);
+      console.log("[handleSendMessage] webApp:", webApp ? "present" : "missing");
+      console.log("[handleSendMessage] initData:", initData ? `present (${initData.length} chars)` : "missing");
+      console.log("[handleSendMessage] window.Telegram:", (typeof window !== 'undefined' && (window as any).Telegram) ? "exists" : "missing");
+      
+      if (typeof window !== 'undefined') {
+        const tg = (window as any).Telegram?.WebApp;
+        if (tg) {
+          console.log("[handleSendMessage] Telegram.WebApp.initData:", tg.initData ? `present (${tg.initData.length} chars)` : "missing");
+          console.log("[handleSendMessage] Telegram.WebApp.initDataUnsafe:", tg.initDataUnsafe ? "present" : "missing");
+        }
+      }
       
       const headers: HeadersInit = {
         "Content-Type": "application/json",
@@ -529,7 +538,11 @@ export default function HomePage() {
       if (initData) {
         headers["x-telegram-init-data"] = initData;
       } else {
-        console.warn("[handleSendMessage] WARNING: initData is missing!");
+        console.error("[handleSendMessage] ERROR: initData is missing!");
+        console.error("[handleSendMessage] This usually means:");
+        console.error("  1. Mini App is not opened through Telegram");
+        console.error("  2. Mini App URL is not correctly configured in BotFather");
+        console.error("  3. Telegram WebApp SDK is not properly initialized");
       }
       
       let response: Response;
