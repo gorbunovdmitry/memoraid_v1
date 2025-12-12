@@ -28,6 +28,7 @@ export default function HomePage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
+  const [showDebugInfo, setShowDebugInfo] = useState(false);
   const [chats, setChats] = useState<Chat[]>([]);
   const [currentChatId, setCurrentChatId] = useState<string | null>(null);
   const [loadingChats, setLoadingChats] = useState(false);
@@ -775,6 +776,72 @@ export default function HomePage() {
       </aside>
 
       {/* Main Content */}
+      {/* Debug Info Panel */}
+      {showDebugInfo && (
+        <div style={{
+          position: 'fixed',
+          top: '10px',
+          right: '10px',
+          background: 'rgba(0, 0, 0, 0.9)',
+          color: 'white',
+          padding: '15px',
+          borderRadius: '8px',
+          fontSize: '12px',
+          zIndex: 10000,
+          maxWidth: '300px',
+          fontFamily: 'monospace'
+        }}>
+          <div style={{ marginBottom: '10px', fontWeight: 'bold' }}>🔍 Debug Info</div>
+          <div>WebApp: {webApp ? '✅ Present' : '❌ Missing'}</div>
+          <div>initData: {initData ? `✅ Present (${initData.length} chars)` : '❌ Missing'}</div>
+          <div>Backend URL: {process.env.NEXT_PUBLIC_BACKEND_URL || 'Not set'}</div>
+          <div>Window.Telegram: {(typeof window !== 'undefined' && (window as any).Telegram) ? '✅ Exists' : '❌ Missing'}</div>
+          {webApp && (
+            <>
+              <div>tg.initData: {webApp.initData ? `✅ (${webApp.initData.length} chars)` : '❌ Missing'}</div>
+              <div>tg.initDataUnsafe: {webApp.initDataUnsafe ? '✅ Present' : '❌ Missing'}</div>
+            </>
+          )}
+          <button 
+            onClick={() => setShowDebugInfo(false)}
+            style={{
+              marginTop: '10px',
+              padding: '5px 10px',
+              background: '#666',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer'
+            }}
+          >
+            Close
+          </button>
+        </div>
+      )}
+      
+      {/* Debug Toggle Button */}
+      <button
+        onClick={() => setShowDebugInfo(!showDebugInfo)}
+        style={{
+          position: 'fixed',
+          bottom: '80px',
+          right: '10px',
+          background: '#007bff',
+          color: 'white',
+          border: 'none',
+          borderRadius: '50%',
+          width: '40px',
+          height: '40px',
+          fontSize: '20px',
+          cursor: 'pointer',
+          zIndex: 9999,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+        }}
+        title="Show Debug Info"
+      >
+        🔍
+      </button>
+
       <div className="main-content">
         {/* Top Bar */}
         <header className="top-bar">
