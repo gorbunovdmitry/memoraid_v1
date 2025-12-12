@@ -127,7 +127,7 @@ CREATE EXTENSION IF NOT EXISTS vector;
 - **Runtime**: `Node`
 - **Build Command**: 
   ```bash
-  pnpm install && pnpm prisma generate && pnpm build
+  pnpm install --prod=false && pnpm exec prisma generate --schema=./prisma/schema.prisma && pnpm exec prisma db push --schema=./prisma/schema.prisma --accept-data-loss && pnpm build
   ```
 - **Start Command**: 
   ```bash
@@ -191,7 +191,7 @@ pnpm prisma migrate deploy
 
 Измените Build Command на:
 ```bash
-pnpm install && pnpm prisma generate && pnpm prisma migrate deploy && pnpm build
+pnpm install --prod=false && pnpm exec prisma generate --schema=./prisma/schema.prisma && pnpm exec prisma migrate deploy --schema=./prisma/schema.prisma && pnpm build
 ```
 
 **Вариант C: Через локальный терминал**

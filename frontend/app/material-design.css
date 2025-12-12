@@ -1,0 +1,344 @@
+/* Material Design 3 System Variables */
+
+:root {
+  /* Material Design 3 Color System */
+  /* Primary Colors */
+  --md-primary: #6750A4;
+  --md-primary-container: #EADDFF;
+  --md-on-primary: #FFFFFF;
+  --md-on-primary-container: #21005D;
+  
+  /* Secondary Colors */
+  --md-secondary: #625B71;
+  --md-secondary-container: #E8DEF8;
+  --md-on-secondary: #FFFFFF;
+  --md-on-secondary-container: #1D192B;
+  
+  /* Tertiary Colors */
+  --md-tertiary: #7D5260;
+  --md-tertiary-container: #FFD8E4;
+  --md-on-tertiary: #FFFFFF;
+  --md-on-tertiary-container: #31111D;
+  
+  /* Error Colors */
+  --md-error: #BA1A1A;
+  --md-error-container: #FFDAD6;
+  --md-on-error: #FFFFFF;
+  --md-on-error-container: #410002;
+  
+  /* Surface Colors */
+  --md-surface: #FFFBFE;
+  --md-surface-variant: #E7E0EC;
+  --md-on-surface: #1C1B1F;
+  --md-on-surface-variant: #49454F;
+  
+  /* Background Colors */
+  --md-background: #FFFBFE;
+  --md-on-background: #1C1B1F;
+  
+  /* Outline */
+  --md-outline: #79747E;
+  --md-outline-variant: #CAC4D0;
+  
+  /* Shadow/Elevation */
+  --md-shadow-color: rgba(0, 0, 0, 0.2);
+  --md-shadow-color-light: rgba(0, 0, 0, 0.1);
+  
+  /* Spacing - 8dp grid system */
+  --md-space-1: 4px;
+  --md-space-2: 8px;
+  --md-space-3: 12px;
+  --md-space-4: 16px;
+  --md-space-5: 20px;
+  --md-space-6: 24px;
+  --md-space-8: 32px;
+  --md-space-10: 40px;
+  --md-space-12: 48px;
+  --md-space-16: 64px;
+  
+  /* Border Radius */
+  --md-radius-xs: 4px;
+  --md-radius-sm: 8px;
+  --md-radius-md: 12px;
+  --md-radius-lg: 16px;
+  --md-radius-xl: 24px;
+  --md-radius-full: 9999px;
+  
+  /* Typography - Material Design 3 */
+  --md-font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Display */
+  --md-display-large-size: 57px;
+  --md-display-large-weight: 400;
+  --md-display-large-line-height: 64px;
+  --md-display-large-letter-spacing: -0.25px;
+  
+  --md-display-medium-size: 45px;
+  --md-display-medium-weight: 400;
+  --md-display-medium-line-height: 52px;
+  --md-display-medium-letter-spacing: 0;
+  
+  --md-display-small-size: 36px;
+  --md-display-small-weight: 400;
+  --md-display-small-line-height: 44px;
+  --md-display-small-letter-spacing: 0;
+  
+  /* Headline */
+  --md-headline-large-size: 32px;
+  --md-headline-large-weight: 400;
+  --md-headline-large-line-height: 40px;
+  --md-headline-large-letter-spacing: 0;
+  
+  --md-headline-medium-size: 28px;
+  --md-headline-medium-weight: 400;
+  --md-headline-medium-line-height: 36px;
+  --md-headline-medium-letter-spacing: 0;
+  
+  --md-headline-small-size: 24px;
+  --md-headline-small-weight: 400;
+  --md-headline-small-line-height: 32px;
+  --md-headline-small-letter-spacing: 0;
+  
+  /* Title */
+  --md-title-large-size: 22px;
+  --md-title-large-weight: 500;
+  --md-title-large-line-height: 28px;
+  --md-title-large-letter-spacing: 0;
+  
+  --md-title-medium-size: 16px;
+  --md-title-medium-weight: 500;
+  --md-title-medium-line-height: 24px;
+  --md-title-medium-letter-spacing: 0.15px;
+  
+  --md-title-small-size: 14px;
+  --md-title-small-weight: 500;
+  --md-title-small-line-height: 20px;
+  --md-title-small-letter-spacing: 0.1px;
+  
+  /* Body */
+  --md-body-large-size: 16px;
+  --md-body-large-weight: 400;
+  --md-body-large-line-height: 24px;
+  --md-body-large-letter-spacing: 0.5px;
+  
+  --md-body-medium-size: 14px;
+  --md-body-medium-weight: 400;
+  --md-body-medium-line-height: 20px;
+  --md-body-medium-letter-spacing: 0.25px;
+  
+  --md-body-small-size: 12px;
+  --md-body-small-weight: 400;
+  --md-body-small-line-height: 16px;
+  --md-body-small-letter-spacing: 0.4px;
+  
+  /* Label */
+  --md-label-large-size: 14px;
+  --md-label-large-weight: 500;
+  --md-label-large-line-height: 20px;
+  --md-label-large-letter-spacing: 0.1px;
+  
+  --md-label-medium-size: 12px;
+  --md-label-medium-weight: 500;
+  --md-label-medium-line-height: 16px;
+  --md-label-medium-letter-spacing: 0.5px;
+  
+  --md-label-small-size: 11px;
+  --md-label-small-weight: 500;
+  --md-label-small-line-height: 16px;
+  --md-label-small-letter-spacing: 0.5px;
+  
+  /* Elevation/Shadows */
+  --md-elevation-0: none;
+  --md-elevation-1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-elevation-2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-elevation-3: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md-elevation-4: 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+  --md-elevation-5: 0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+  
+  /* Animation Durations */
+  --md-duration-short1: 50ms;
+  --md-duration-short2: 100ms;
+  --md-duration-short3: 150ms;
+  --md-duration-short4: 200ms;
+  --md-duration-medium1: 250ms;
+  --md-duration-medium2: 300ms;
+  --md-duration-medium3: 350ms;
+  --md-duration-medium4: 400ms;
+  --md-duration-long1: 450ms;
+  --md-duration-long2: 500ms;
+  --md-duration-long3: 550ms;
+  --md-duration-long4: 600ms;
+  
+  /* Easing */
+  --md-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --md-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --md-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Material Design Typography Classes */
+.md-display-large {
+  font-family: var(--md-font-family);
+  font-size: var(--md-display-large-size);
+  font-weight: var(--md-display-large-weight);
+  line-height: var(--md-display-large-line-height);
+  letter-spacing: var(--md-display-large-letter-spacing);
+}
+
+.md-display-medium {
+  font-family: var(--md-font-family);
+  font-size: var(--md-display-medium-size);
+  font-weight: var(--md-display-medium-weight);
+  line-height: var(--md-display-medium-line-height);
+  letter-spacing: var(--md-display-medium-letter-spacing);
+}
+
+.md-display-small {
+  font-family: var(--md-font-family);
+  font-size: var(--md-display-small-size);
+  font-weight: var(--md-display-small-weight);
+  line-height: var(--md-display-small-line-height);
+  letter-spacing: var(--md-display-small-letter-spacing);
+}
+
+.md-headline-large {
+  font-family: var(--md-font-family);
+  font-size: var(--md-headline-large-size);
+  font-weight: var(--md-headline-large-weight);
+  line-height: var(--md-headline-large-line-height);
+  letter-spacing: var(--md-headline-large-letter-spacing);
+}
+
+.md-headline-medium {
+  font-family: var(--md-font-family);
+  font-size: var(--md-headline-medium-size);
+  font-weight: var(--md-headline-medium-weight);
+  line-height: var(--md-headline-medium-line-height);
+  letter-spacing: var(--md-headline-medium-letter-spacing);
+}
+
+.md-headline-small {
+  font-family: var(--md-font-family);
+  font-size: var(--md-headline-small-size);
+  font-weight: var(--md-headline-small-weight);
+  line-height: var(--md-headline-small-line-height);
+  letter-spacing: var(--md-headline-small-letter-spacing);
+}
+
+.md-title-large {
+  font-family: var(--md-font-family);
+  font-size: var(--md-title-large-size);
+  font-weight: var(--md-title-large-weight);
+  line-height: var(--md-title-large-line-height);
+  letter-spacing: var(--md-title-large-letter-spacing);
+}
+
+.md-title-medium {
+  font-family: var(--md-font-family);
+  font-size: var(--md-title-medium-size);
+  font-weight: var(--md-title-medium-weight);
+  line-height: var(--md-title-medium-line-height);
+  letter-spacing: var(--md-title-medium-letter-spacing);
+}
+
+.md-title-small {
+  font-family: var(--md-font-family);
+  font-size: var(--md-title-small-size);
+  font-weight: var(--md-title-small-weight);
+  line-height: var(--md-title-small-line-height);
+  letter-spacing: var(--md-title-small-letter-spacing);
+}
+
+.md-body-large {
+  font-family: var(--md-font-family);
+  font-size: var(--md-body-large-size);
+  font-weight: var(--md-body-large-weight);
+  line-height: var(--md-body-large-line-height);
+  letter-spacing: var(--md-body-large-letter-spacing);
+}
+
+.md-body-medium {
+  font-family: var(--md-font-family);
+  font-size: var(--md-body-medium-size);
+  font-weight: var(--md-body-medium-weight);
+  line-height: var(--md-body-medium-line-height);
+  letter-spacing: var(--md-body-medium-letter-spacing);
+}
+
+.md-body-small {
+  font-family: var(--md-font-family);
+  font-size: var(--md-body-small-size);
+  font-weight: var(--md-body-small-weight);
+  line-height: var(--md-body-small-line-height);
+  letter-spacing: var(--md-body-small-letter-spacing);
+}
+
+.md-label-large {
+  font-family: var(--md-font-family);
+  font-size: var(--md-label-large-size);
+  font-weight: var(--md-label-large-weight);
+  line-height: var(--md-label-large-line-height);
+  letter-spacing: var(--md-label-large-letter-spacing);
+}
+
+.md-label-medium {
+  font-family: var(--md-font-family);
+  font-size: var(--md-label-medium-size);
+  font-weight: var(--md-label-medium-weight);
+  line-height: var(--md-label-medium-line-height);
+  letter-spacing: var(--md-label-medium-letter-spacing);
+}
+
+.md-label-small {
+  font-family: var(--md-font-family);
+  font-size: var(--md-label-small-size);
+  font-weight: var(--md-label-small-weight);
+  line-height: var(--md-label-small-line-height);
+  letter-spacing: var(--md-label-small-letter-spacing);
+}
+
+/* Material Design Utility Classes */
+.md-elevation-1 {
+  box-shadow: var(--md-elevation-1);
+}
+
+.md-elevation-2 {
+  box-shadow: var(--md-elevation-2);
+}
+
+.md-elevation-3 {
+  box-shadow: var(--md-elevation-3);
+}
+
+.md-elevation-4 {
+  box-shadow: var(--md-elevation-4);
+}
+
+.md-elevation-5 {
+  box-shadow: var(--md-elevation-5);
+}
+
+/* Ripple Effect */
+.md-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.md-ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.md-ripple:active::before {
+  width: 300px;
+  height: 300px;
+}
+
