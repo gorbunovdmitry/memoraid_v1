@@ -514,8 +514,11 @@ export default function HomePage() {
     // Отправка на backend
     try {
       const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001";
+      const requestUrl = `${backendUrl}/ingest`;
       
       // Логирование для отладки
+      console.log("[handleSendMessage] Backend URL:", backendUrl);
+      console.log("[handleSendMessage] Request URL:", requestUrl);
       console.log("[handleSendMessage] initData:", initData ? "present" : "missing");
       console.log("[handleSendMessage] initData length:", initData?.length || 0);
       
@@ -529,14 +532,24 @@ export default function HomePage() {
         console.warn("[handleSendMessage] WARNING: initData is missing!");
       }
       
-      const response = await fetch(`${backendUrl}/ingest`, {
-        method: "POST",
-        headers,
-        body: JSON.stringify({ 
-          text: messageText,
-          ...(effectiveChatId && { chatId: effectiveChatId })
-        })
-      });
+      let response: Response;
+      try {
+        response = await fetch(requestUrl, {
+          method: "POST",
+          headers,
+          body: JSON.stringify({ 
+            text: messageText,
+            ...(effectiveChatId && { chatId: effectiveChatId })
+          })
+        });
+      } catch (fetchError) {
+        // Сетевая ошибка (Load failed)
+        console.error("[handleSendMessage] Fetch error:", fetchError);
+        const errorMsg = fetchError instanceof Error 
+          ? `Network error: ${fetchError.message}` 
+          : "Network error: Load failed";
+        throw new Error(errorMsg);
+      }
       
       if (!response.ok) {
         // Пытаемся извлечь сообщение об ошибке из ответа
@@ -545,7 +558,15 @@ export default function HomePage() {
           const errorData = await response.json();
           errorMessage = errorData.message || errorData.error || errorMessage;
         } catch (e) {
-          // Если не удалось распарсить JSON, используем дефолтное сообщение
+          // Если не удалось распарсить JSON, используем текст ответа
+          try {
+            const errorText = await response.text();
+            if (errorText) {
+              errorMessage = errorText.substring(0, 200); // Ограничиваем длину
+            }
+          } catch (textError) {
+            // Игнорируем ошибку парсинга текста
+          }
         }
         throw new Error(errorMessage);
       }

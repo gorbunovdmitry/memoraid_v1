@@ -14,10 +14,16 @@ async function bootstrap() {
   console.log(`[Bootstrap] NODE_ENV=${process.env.NODE_ENV}`);
   console.log(`[Bootstrap] TELEGRAM_BOT_TOKEN=${process.env.TELEGRAM_BOT_TOKEN ? 'SET' : 'NOT SET'}`);
   
+  // CORS настройки - разрешаем все источники для Telegram Mini App
+  const corsOrigin = process.env.FRONTEND_URL || process.env.NEXT_PUBLIC_BACKEND_URL || true;
+  console.log(`[Bootstrap] CORS origin: ${corsOrigin === true ? 'ALLOW_ALL' : corsOrigin}`);
+  
   const app = await NestFactory.create(AppModule, { 
     cors: {
-      origin: process.env.FRONTEND_URL || true,
+      origin: corsOrigin,
       credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization', 'x-telegram-init-data'],
     },
     logger: ['error', 'warn', 'log', 'debug', 'verbose']
   });
