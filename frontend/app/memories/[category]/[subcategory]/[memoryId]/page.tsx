@@ -86,7 +86,8 @@ export default function MemoryPage() {
         const data = await response.json();
         logger.log("Loaded memory:", data);
         setMemory(data);
-        setEditTitle(data.title || "");
+        // Не используем title, только content
+        setEditTitle("");
         setEditContent(data.content || "");
         // Кэшируем данные на 10 минут
         dataCache.set(cacheKey, data, 10 * 60 * 1000);
@@ -198,10 +199,10 @@ export default function MemoryPage() {
     }
     
     // Проверяем, что есть изменения для сохранения
-    const titleChanged = editTitle !== memory.title;
+    // Title не используется, проверяем только content
     const contentChanged = editContent !== memory.content;
     
-    if (!titleChanged && !contentChanged) {
+    if (!contentChanged) {
       setSaving(false);
       return;
     }
@@ -219,13 +220,11 @@ export default function MemoryPage() {
         headers["x-telegram-init-data"] = initData;
       }
 
-      const updateData: { title?: string; content?: string } = {};
-      if (titleChanged) {
-        updateData.title = editTitle || '';
-      }
-      if (contentChanged) {
-        updateData.content = editContent || '';
-      }
+      // Обновляем только content, title всегда пустой
+      const updateData: { title?: string; content?: string } = {
+        title: '', // Всегда пустой title
+        content: editContent || ''
+      };
 
       if (Object.keys(updateData).length === 0) {
         setSaving(false);
@@ -248,7 +247,8 @@ export default function MemoryPage() {
         logger.log("Memory updated successfully:", updated);
         // Оптимистичное обновление - сразу обновляем UI
         setMemory(prev => prev ? { ...prev, ...updated } : updated);
-        setEditTitle(updated.title || '');
+        // Title не используется, всегда пустой
+        setEditTitle('');
         setEditContent(updated.content || '');
         setLastSaved(new Date());
         // Обновляем кэш
