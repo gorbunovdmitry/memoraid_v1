@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import { WebApp } from "@twa-dev/sdk";
+
+type TelegramWebApp = NonNullable<Window['Telegram']>['WebApp'];
 
 export function useTelegram() {
-  const [webApp, setWebApp] = useState<WebApp | null>(null);
+  const [webApp, setWebApp] = useState<TelegramWebApp | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
