@@ -44,12 +44,17 @@
   --tg-line-height-normal: 1.4;
   --tg-line-height-relaxed: 1.6;
   
-  /* Liquid Glass Effect */
-  --tg-glass-bg: rgba(255, 255, 255, 0.7);
-  --tg-glass-bg-dark: rgba(0, 0, 0, 0.3);
+  /* Liquid Glass Effect - адаптивный к теме */
+  /* Используем цвет фона Telegram с прозрачностью для glass эффекта */
   --tg-glass-blur: blur(20px);
-  --tg-glass-border: rgba(255, 255, 255, 0.18);
-  --tg-glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --tg-glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  
+  /* Вычисляем glass цвета на основе темы Telegram */
+  /* Для светлой темы: белый с прозрачностью, для темной: темный с прозрачностью */
+  --tg-glass-bg-light: rgba(255, 255, 255, 0.7);
+  --tg-glass-bg-dark: rgba(0, 0, 0, 0.3);
+  --tg-glass-border-light: rgba(255, 255, 255, 0.18);
+  --tg-glass-border-dark: rgba(255, 255, 255, 0.1);
   
   /* Transitions */
   --tg-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -63,20 +68,21 @@
   --tg-elevation-4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-/* Liquid Glass Utility Classes */
+/* Liquid Glass Utility Classes - адаптивные к теме */
 .tg-glass {
-  background: var(--tg-glass-bg);
+  /* Используем цвет фона Telegram с прозрачностью */
+  background: color-mix(in srgb, var(--tg-theme-bg-color) 85%, transparent);
   backdrop-filter: var(--tg-glass-blur);
   -webkit-backdrop-filter: var(--tg-glass-blur);
-  border: 1px solid var(--tg-glass-border);
+  border: 1px solid color-mix(in srgb, var(--tg-theme-text-color) 10%, transparent);
   box-shadow: var(--tg-glass-shadow);
 }
 
 .tg-glass-dark {
-  background: var(--tg-glass-bg-dark);
+  background: color-mix(in srgb, var(--tg-theme-bg-color) 70%, transparent);
   backdrop-filter: var(--tg-glass-blur);
   -webkit-backdrop-filter: var(--tg-glass-blur);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid color-mix(in srgb, var(--tg-theme-text-color) 15%, transparent);
   box-shadow: var(--tg-glass-shadow);
 }
 
