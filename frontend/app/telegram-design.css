@@ -1,14 +1,14 @@
 /* Telegram Design System with Liquid Glass Effect */
 
 :root {
-  /* Telegram Color Palette */
-  --tg-theme-bg-color: var(--tg-theme-bg-color, #ffffff);
-  --tg-theme-text-color: var(--tg-theme-text-color, #000000);
-  --tg-theme-hint-color: var(--tg-theme-hint-color, #999999);
-  --tg-theme-link-color: var(--tg-theme-link-color, #2481cc);
-  --tg-theme-button-color: var(--tg-theme-button-color, #2481cc);
-  --tg-theme-button-text-color: var(--tg-theme-button-text-color, #ffffff);
-  --tg-theme-secondary-bg-color: var(--tg-theme-secondary-bg-color, #f1f1f1);
+  /* Telegram Color Palette - Принудительно светлая тема */
+  --tg-theme-bg-color: #ffffff;
+  --tg-theme-text-color: #000000;
+  --tg-theme-hint-color: #999999;
+  --tg-theme-link-color: #2481cc;
+  --tg-theme-button-color: #2481cc;
+  --tg-theme-button-text-color: #ffffff;
+  --tg-theme-secondary-bg-color: #f1f1f1;
   
   /* Telegram Design Tokens */
   --tg-spacing-xs: 4px;
@@ -44,17 +44,13 @@
   --tg-line-height-normal: 1.4;
   --tg-line-height-relaxed: 1.6;
   
-  /* Liquid Glass Effect - адаптивный к теме */
-  /* Используем цвет фона Telegram с прозрачностью для glass эффекта */
+  /* Liquid Glass Effect - только светлая тема */
   --tg-glass-blur: blur(20px);
   --tg-glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
   
-  /* Вычисляем glass цвета на основе темы Telegram */
-  /* Для светлой темы: белый с прозрачностью, для темной: темный с прозрачностью */
+  /* Glass цвета для светлой темы */
   --tg-glass-bg-light: rgba(255, 255, 255, 0.7);
-  --tg-glass-bg-dark: rgba(0, 0, 0, 0.3);
   --tg-glass-border-light: rgba(255, 255, 255, 0.18);
-  --tg-glass-border-dark: rgba(255, 255, 255, 0.1);
   
   /* Transitions */
   --tg-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);

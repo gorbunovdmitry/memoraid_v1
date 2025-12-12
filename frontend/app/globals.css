@@ -13,9 +13,9 @@
   --accent-orange: #ff9500;
   --accent-green: #34c759;
   
-  /* Glass эффекты адаптивные к теме */
-  --tg-glass-bg: color-mix(in srgb, var(--tg-theme-bg-color) 85%, transparent);
-  --tg-glass-border: color-mix(in srgb, var(--tg-theme-text-color) 10%, transparent);
+  /* Glass эффекты для светлой темы */
+  --tg-glass-bg: rgba(255, 255, 255, 0.85);
+  --tg-glass-border: rgba(255, 255, 255, 0.18);
 }
 
 * {
@@ -32,8 +32,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
-  /* Поддержка цветовой схемы для правильной работы с темой */
-  color-scheme: light dark;
+  /* Принудительно светлая тема */
+  color-scheme: light;
 }
 
 .app-body {
@@ -156,7 +156,7 @@ body {
 }
 
 .search-container:focus-within {
-  background: color-mix(in srgb, var(--tg-theme-bg-color) 90%, transparent);
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: var(--tg-elevation-2, 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23));
 }
 
@@ -554,7 +554,7 @@ body {
 .subcategory-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--tg-elevation-3, 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23));
-  background: color-mix(in srgb, var(--tg-theme-bg-color) 90%, transparent);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .subcategory-card:active {
@@ -1299,7 +1299,7 @@ body {
 }
 
 .input-container:focus-within {
-  background: color-mix(in srgb, var(--tg-theme-bg-color) 90%, transparent);
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: var(--tg-elevation-2, 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23));
 }
 
